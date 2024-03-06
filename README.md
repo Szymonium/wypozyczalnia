@@ -6,15 +6,16 @@ Projekt bazy danych wypożyczalni samochodów, łączącej się ze stroną inter
 ## Tabele w bazie
 
 - pracownicy
-![App Screenshot](https://via.placeholder.com/468x300?text=App+Screenshot+Here)
+![App Screenshot](https://ibb.co/d7JrkzY)
 
 - klienci
-![App Screenshot](https://via.placeholder.com/468x300?text=App+Screenshot+Here)
+![App Screenshot](https://ibb.co/vwJ3kGK)
 
 - samochody
-![App Screenshot](https://via.placeholder.com/468x300?text=App+Screenshot+Here)
+![App Screenshot](https://ibb.co/Fng6wtn)
+
 - wypożyczenia
-![App Screenshot](https://via.placeholder.com/468x300?text=App+Screenshot+Here)
+![App Screenshot](https://ibb.co/nbWFHtw)
 
 
 ## Struktura bazy
