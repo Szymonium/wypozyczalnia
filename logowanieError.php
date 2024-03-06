@@ -13,7 +13,7 @@ setcookie('password', @$password, time() - 3600, '/');
     <link rel="stylesheet" href="./style.css">
 </head>
 <body>
-    <form method="post" action="./logowanie.php">
+    <form method="post" action="./logowanie.php" class="log-in">
         <h3>Zaloguj się</h3>
         <p>Zaloguj się na konto phpMyAdmin, aby uzystać dostęp do panelu bazy wypożyczalni</p>
 

@@ -42,7 +42,7 @@ setcookie('password', @$password, time() + 86400, '/');
 
     mysqli_close($conn);
   ?>
-    <form method="post" action="./logowanie.php">
+    <form method="post" action="./logowanie.php" class="log-in">
         <h3>Zaloguj się</h3>
         <p>Zaloguj się na konto phpMyAdmin, aby uzystać dostęp do panelu bazy wypożyczalni</p>
 

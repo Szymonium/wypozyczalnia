@@ -11,7 +11,7 @@ body {
     background-color: #212121;
 }
 
-form, .all {
+.log-in, .all {
     height: 570px;
     width: 400px;
     background-color: #0D7377;
@@ -26,9 +26,21 @@ form, .all {
     padding: 50px 35px;
 }
 
+.panel {
+  height: 40%;
+  width: 80%;
+  background-color: #323232;
+  border-radius: 10px;
+  margin: auto;
+  padding: 50px 35px;
+  margin-top: 30px;
+}
+
 .all {
   width: 85%;
+  height: 1500px;
   padding: 0;
+  top: 110%;
 }
 
 .log-out:link, .log-out:visited {
@@ -67,14 +79,18 @@ form p {
   margin-top: 10px;
 }
 
-label {
+form label {
     display: block;
     margin-top: 20px;
     font-size: 16px;
     font-weight: 500;
 }
 
-input {
+.panel label {
+  display: inline-block;
+}
+
+.log-in input {
     display: block;
     height: 50px;
     width: 100%;
@@ -86,11 +102,15 @@ input {
     font-weight: 300;
 }
 
+.panel input {
+  margin-left: 10%;
+}
+
 ::placeholder {
     color: #e5e5e5;
 }
 
-button {
+form button {
     margin-top: 40px;
     width: 100%;
     background-color: #fff;
