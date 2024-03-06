@@ -1,10 +1,4 @@
 <!DOCTYPE html>
-<?php 
-if (isset($_COOKIE['user']) && isset($_COOKIE['password'])) {
-  $user = $_COOKIE['user'];
-  $password = $_COOKIE['password'];
-}
-?>
 <html lang="pl">
 <head>
   <meta charset="UTF-8">
@@ -13,12 +7,19 @@ if (isset($_COOKIE['user']) && isset($_COOKIE['password'])) {
   <link rel="stylesheet" href="./style.css">
 </head>
 <body>
-  <h1>
-    <?php 
-      echo $user. ', ';
-    ?>
-    witaj w panelu zarządzania bazą danych Warsztatu Rentakar!
-  </h1>
-  <a href="./logout.php">Wyloguj się</a>
+  <section class="all">
+    <header>  
+      <a href="./logout.php" class="log-out">Wyloguj się</a>
+      <h1>
+        <?php 
+          echo $_COOKIE['user'] . ', ';
+        ?>
+        witaj w panelu zarządzania bazą danych Warsztatu Rentakar!
+    </h1>
+    </header>
+    <main>
+      
+    </main>
+  </section>
 </body>
 </html>
