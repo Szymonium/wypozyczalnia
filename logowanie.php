@@ -42,12 +42,12 @@ setcookie('password', @$password, time() + 86400, '/');
 
     include './uri.php';
     if ($validPassword) {
-      header('Location: '.$uri.'/warsztat/panel.php');
+      header('Location: '.$uri.'/wypozyczalnia/panel.php');
     }
   ?>
     <form method="post" action="./logowanie.php">
         <h3>Zaloguj się</h3>
-        <p>Zaloguj się na konto phpMyAdmin, aby uzystać dostęp do panelu bazy warsztatu</p>
+        <p>Zaloguj się na konto phpMyAdmin, aby uzystać dostęp do panelu bazy wypożyczalni</p>
 
         <label for="username">Nazwa użytkownika</label>
         <input type="text" placeholder="Username" name="user" id="username">
@@ -62,7 +62,7 @@ setcookie('password', @$password, time() + 86400, '/');
         <?php 
         if ($user != '' && !$validPassword) {
           echo "<p>Hasło jest błędne</p>";
-          header('Location: '.$uri.'/warsztat/logowanieError.php');
+          header('Location: '.$uri.'/wypozyczalnia/logowanieError.php');
         }
         ?>
 

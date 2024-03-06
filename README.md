@@ -1,7 +1,7 @@
 
-# Projekt Warsztat Rentakar
+# Projekt Wypożyczalnia Rentakar
 
-Projekt bazy danych warsztatu samochodowego, łączącej się ze stroną internetową, na której można zarządzać bazą
+Projekt bazy danych wypożyczalni samochodów, łączącej się ze stroną internetową, na której można zarządzać bazą
 
 ## Tabele w bazie
 
@@ -11,9 +11,7 @@ Projekt bazy danych warsztatu samochodowego, łączącej się ze stroną interne
 ![App Screenshot](https://via.placeholder.com/468x300?text=App+Screenshot+Here)
 - samochody
 ![App Screenshot](https://via.placeholder.com/468x300?text=App+Screenshot+Here)
-- części
-![App Screenshot](https://via.placeholder.com/468x300?text=App+Screenshot+Here)
-- naprawy
+- wypożyczenia
 ![App Screenshot](https://via.placeholder.com/468x300?text=App+Screenshot+Here)
 
 
