@@ -25,25 +25,22 @@ setcookie('password', @$password, time() + 86400, '/');
   <?php
     $conn = mysqli_connect('localhost', 'root', '', 'mysql');
 
-    $selectUser = mysqli_query($conn, "SELECT User FROM user WHERE user = '$user'");
-
-    $userExists = FALSE;
-    while ($result = mysqli_fetch_array($selectUser)) {
-      if (@$result['User'] == $user) {
-        $userExists = TRUE;
-      }
-    }
-
-    $validPassword = FALSE;
+    $validLogIn = FALSE;
     $selectPassword = mysqli_query($conn, "SELECT User, Password FROM user WHERE password = PASSWORD('$password') AND user = '$user'");
     while ($result = mysqli_fetch_array($selectPassword)) {
-      $validPassword = TRUE;
+      $validLogIn = TRUE;
     }
 
     include './uri.php';
-    if ($validPassword) {
+    if ($validLogIn) {
       header('Location: '.$uri.'/wypozyczalnia/panel.php');
     }
+
+    if ($user != '' && !$validLogIn) {
+      header('Location: '.$uri.'/wypozyczalnia/logowanieError.php');
+    }
+
+    mysqli_close($conn);
   ?>
     <form method="post" action="./logowanie.php">
         <h3>Zaloguj się</h3>
@@ -51,25 +48,11 @@ setcookie('password', @$password, time() + 86400, '/');
 
         <label for="username">Nazwa użytkownika</label>
         <input type="text" placeholder="Username" name="user" id="username">
-        <?php 
-        if ($user != '' && !$userExists) {
-          echo "<p>Podany użytkownik nie istnieje</p>";
-        }
-        ?>
 
         <label for="password">Hasło</label>
         <input type="password" placeholder="Password" name="password" id="password">
-        <?php 
-        if ($user != '' && !$validPassword) {
-          echo "<p>Hasło jest błędne</p>";
-          header('Location: '.$uri.'/wypozyczalnia/logowanieError.php');
-        }
-        ?>
-
+        
         <button type="submit">Zaloguj</button>
     </form>
-    <?php 
-      mysqli_close($conn);
-    ?>
 </body>
 </html>

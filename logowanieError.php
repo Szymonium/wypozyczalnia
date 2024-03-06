@@ -22,7 +22,7 @@ setcookie('password', @$password, time() - 3600, '/');
 
         <label for="password">Hasło</label>
         <input type="password" placeholder="Password" name="password" id="password">
-        <p>Hasło jest błędne</p>
+        <p>Błąd nazwy użytkownika lub/i hasła</p>
 
         <button type="submit">Zaloguj</button>
     </form>
