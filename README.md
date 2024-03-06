@@ -20,7 +20,7 @@ Projekt bazy danych wypożyczalni samochodów, łączącej się ze stroną inter
 
 ## Struktura bazy
 
-![App Screenshot](https://via.placeholder.com/468x300?text=App+Screenshot+Here)
+![App Screenshot](https://i.ibb.co/4M85g3C/struktura.png)
 
 
 ## Widoki
