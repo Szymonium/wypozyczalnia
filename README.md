@@ -7,8 +7,10 @@ Projekt bazy danych wypożyczalni samochodów, łączącej się ze stroną inter
 
 - pracownicy
 ![App Screenshot](https://via.placeholder.com/468x300?text=App+Screenshot+Here)
+
 - klienci
 ![App Screenshot](https://via.placeholder.com/468x300?text=App+Screenshot+Here)
+
 - samochody
 ![App Screenshot](https://via.placeholder.com/468x300?text=App+Screenshot+Here)
 - wypożyczenia
