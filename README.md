@@ -6,14 +6,19 @@ Projekt bazy danych warsztatu samochodowego, łączącej się ze stroną interne
 ## Tabele w bazie
 
 - pracownicy
+- 
 ![App Screenshot](https://via.placeholder.com/468x300?text=App+Screenshot+Here)
 - klienci
+- 
 ![App Screenshot](https://via.placeholder.com/468x300?text=App+Screenshot+Here)
 - samochody
+- 
 ![App Screenshot](https://via.placeholder.com/468x300?text=App+Screenshot+Here)
 - części
+- 
 ![App Screenshot](https://via.placeholder.com/468x300?text=App+Screenshot+Here)
 - naprawy
+- 
 ![App Screenshot](https://via.placeholder.com/468x300?text=App+Screenshot+Here)
 
 
