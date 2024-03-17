@@ -1,7 +1,8 @@
 
 # Projekt Wypożyczalnia Rentakar
 
-Projekt bazy danych wypożyczalni samochodów, łączącej się ze stroną internetową, na której można zarządzać bazą
+Projekt bazy danych wypożyczalni samochodów, łączącej się ze stroną internetową, na której można zarządzać bazą.
+Aby strona internetowa działała należy umieścić ją w folderze o nazwie "wypozyczalnia" w htdocs localhost'a.
 
 ## Tabele w bazie
 
