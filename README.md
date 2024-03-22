@@ -41,11 +41,54 @@ Baza zawiera x widoków
 
 Lista możliwych do wykonania zapytań SELECT w bazie:
 
-- zapytanie
-```Wybierz najstarszego pracownika:
+- Wybierz najstarszego pracownika:
+```zapytanie
   SELECT imie, nazwisko, data_ur FROM `klienci` ORDER BY data_ur ASC LIMIT 1
 ```
 
+- Wybierz imie, nazwisko i oblicz wiek klientow: 
+```zapytanie
+  SELECT imie, nazwisko, YEAR(NOW()) - YEAR(data_ur) AS 'wiek' FROM `klienci`
+```
+
+- Wybierz sredni wiek pracownikow: 
+```zapytanie
+  SELECT ROUND(AVG( YEAR(NOW()) - YEAR(data_ur))) AS 'sredni_wiek' FROM `pracownicy`
+```
+
+- Oblicz ilosc dni wypozyczen:
+```zapytanie
+  SELECT id, DATEDIFF(data_zwrotu, data_wypozyczenia) AS 'ilosc_dni' FROM `wypozyczenia`
+```
+
+- Wyswietl imie, nazwisko, id klienta i ilosc wypozyczen: 
+```zapytanie
+  SELECT klienci_id, imie, nazwisko, COUNT(klienci_id) AS ilosc_wypozyczen FROM `wypozyczenia` AS w
+INNER JOIN klienci AS k ON k.id = w.klienci_id
+GROUP BY klienci_id
+```
+
+- Wyswietl imie i nazwisko pracownikow jako pracownik, imie i nazwisko klientow jako klient i id wypozyczenia.Wyswietl wynik niemalejaco po id wypozyczenia:
+```zapytanie
+  SELECT CONCAT(p.imie," ", p.nazwisko) AS pracownik , CONCAT(k.imie," ", k.nazwisko) AS klient, w.id FROM `wypozyczenia` AS w
+INNER JOIN pracownicy AS p ON p.id = w.pracownicy_id
+INNER JOIN klienci AS k ON k.id = w.klienci_id
+ORDER BY id
+```
+
+- Wyswietl imie, nazwisko klienta , marke, model samochod i id wypozyczenia. Wyswietl wynik nierosnaco po id wypozyczenia:
+```zapytanie
+  SELECT CONCAT(k.imie," ", k.nazwisko) AS klient, marka, model, w.id FROM `wypozyczenia` AS w
+INNER JOIN klienci AS k ON k.id = w.klienci_id
+INNER JOIN samochody AS s ON s.id = w.samochody_id
+ORDER BY id DESC
+```
+
+- zapytanie 
+```zapytanie
+  kod zapytania
+```
+
 - zapytanie 
 ```zapytanie
   kod zapytania
@@ -55,4 +98,3 @@ Lista możliwych do wykonania zapytań SELECT w bazie:
 ```zapytanie
   kod zapytania
 ```
-
