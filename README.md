@@ -41,9 +41,9 @@ Baza zawiera x widoków
 
 Lista możliwych do wykonania zapytań SELECT w bazie:
 
-- zapytanie 
-```zapytanie
-  kod zapytania
+- zapytanie
+```Wybierz najstarszego pracownika:
+  SELECT imie, nazwisko, data_ur FROM `klienci` ORDER BY data_ur ASC LIMIT 1
 ```
 
 - zapytanie 
