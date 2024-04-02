@@ -31,13 +31,13 @@ Baza zawiera x widoków
 - Utworz widok klientow z ich imionami
 ```nazwa
   CREATE VIEW klienci_z_imionami AS
-   SELECT id, imie, nazwisko FROM klienci;
+   SELECT id, imie, nazwisko FROM klienci
 ```
 
-- Utworz widok kilentow urodzonych po 1990
+- Utworz widok kilentow urodzonych po 1999
 ```nazwa
-  CREATE VIEW klienci_urodzeni_po_1990 AS
-   SELECT * FROM klienci WHERE YEAR(data_ur) > 1990;
+  CREATE VIEW klienci_urodzeni_po_1999 AS
+   SELECT * FROM klienci WHERE YEAR(data_ur) > 1999
 ```
 
 - Utworz widok dlugosci wypozyczen
@@ -46,9 +46,10 @@ Baza zawiera x widoków
       SELECT id, DATEDIFF(data_zwrotu, data_wypozyczenia) AS 'ilosc_dni' FROM `wypozyczenia`
 ```
 
-- nazwa
+- Utworz widok pracownikow ktorzy sa mezczyznami
 ```nazwa
-  kod zapytania w widoku
+  CREATE VIEW pracownicy_mezczyzni AS
+      SELECT imie, nazwisko FROM 'pracownicy' WHERE plec = 'M'
 ```
 
 - nazwa
