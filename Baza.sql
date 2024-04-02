@@ -83,14 +83,14 @@ CREATE TABLE `pracownicy` (
   `pesel` varchar(11) DEFAULT NULL,
   `plec` varchar(1) DEFAULT NULL,
   `data_ur` date DEFAULT NULL,
-  `e-mail` varchar(50) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL
+  `mail` varchar(50) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `pracownicy`
 --
 
-INSERT INTO `pracownicy` (`id`, `imie`, `nazwisko`, `pesel`, `plec`, `data_ur`, `e-mail`) VALUES
+INSERT INTO `pracownicy` (`id`, `imie`, `nazwisko`, `pesel`, `plec`, `data_ur`, `mail`) VALUES
 (1, 'Bartosz', 'Czosynka', '80061862515', 'M', '1980-06-18', 'bartoszczosynka@yahoo.com'),
 (2, 'Antonina', 'Kotyrba', '90100496662', 'K', '1990-10-04', 'antoninakotyrba@interia.eu'),
 (3, 'Lucyna', 'Kosiba', '93121133269', 'K', '1993-12-11', 'lucynakosiba@outlook.com'),
