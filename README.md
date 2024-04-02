@@ -84,10 +84,11 @@ INNER JOIN samochody AS s ON s.id = w.samochody_id
 ORDER BY id DESC
 ```
 
-- Wyswietl koszt kazdego wypozyczenia 
+- Wyswietl koszt kazdego wypozyczenia nie malejaco
 ```zapytanie
   SELECT w.id, (DATEDIFF(data_zwrotu, data_wypozyczenia) * cena_za_dzien) AS koszt FROM `wypozyczenia` AS w
 INNER JOIN samochody AS s ON w.samochody_id=s.id
+GROUP BY koszt DESC
 ```
 
 - zapytanie 
