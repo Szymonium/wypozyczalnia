@@ -76,7 +76,7 @@ INNER JOIN klienci AS k ON k.id = w.klienci_id
 ORDER BY id
 ```
 
-- Wyswietl imie, nazwisko klienta , marke, model samochod i id wypozyczenia. Wyswietl wynik nierosnaco po id wypozyczenia:
+- Wyswietl imie, nazwisko klienta , marke, model samochodu i id wypozyczenia. Wyswietl wynik nierosnaco po id wypozyczenia:
 ```zapytanie
   SELECT CONCAT(k.imie," ", k.nazwisko) AS klient, marka, model, w.id FROM `wypozyczenia` AS w
 INNER JOIN klienci AS k ON k.id = w.klienci_id
