@@ -98,9 +98,9 @@ UNION ALL
 (SELECT rocznik FROM samochody GROUP BY rocznik ASC LIMIT 1)
 ```
 
-- zapytanie 
+- Wyswietl ilosc znakow w mailach pracownikow
 ```zapytanie
-  kod zapytania
+  SELECT mail, CHAR_LENGTH(mail) AS znaki FROM pracownicy
 ```
 
 - zapytanie 
