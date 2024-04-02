@@ -40,9 +40,10 @@ Baza zawiera x widoków
    SELECT * FROM klienci WHERE YEAR(data_ur) > 1990;
 ```
 
-- 
+- Utworz widok klientow urodzonych przed 2000
 ```nazwa
-  kod zapytania w widoku
+  CREATE VIEW klienci_urodzeni_przed_2000 AS
+    SELECT * FROM klienci WHERE YEAR(data_ur) < 2000;
 ```
 
 - nazwa
