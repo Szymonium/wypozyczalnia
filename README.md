@@ -31,13 +31,13 @@ Baza zawiera x widoków
 - Utworz widok klientow z ich imionami
 ```nazwa
   CREATE VIEW klienci_z_imionami AS
-   SELECT id, imie, nazwisko FROM klienci
+      SELECT id, imie, nazwisko FROM klienci
 ```
 
 - Utworz widok kilentow urodzonych po 1999
 ```nazwa
   CREATE VIEW klienci_urodzeni_po_1999 AS
-   SELECT * FROM klienci WHERE YEAR(data_ur) > 1999
+      SELECT * FROM klienci WHERE YEAR(data_ur) > 1999
 ```
 
 - Utworz widok dlugosci wypozyczen
@@ -52,9 +52,10 @@ Baza zawiera x widoków
       SELECT imie, nazwisko FROM 'pracownicy' WHERE plec = 'M'
 ```
 
-- nazwa
+- Utworz widok w ktorym polaczysz imie i nazwisko (odstep miedzy nimi) oraz male znaki zamienisz na duze 
 ```nazwa
-  kod zapytania w widoku
+  CREATE VIEW klienci_duzymi_literami AS
+ 	    SELECT UPPER(CONCAT(imie, ' ',nazwisko)) AS duze FROM klienci 
 ```
 ## Zapytania
 
