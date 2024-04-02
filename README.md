@@ -91,9 +91,11 @@ INNER JOIN samochody AS s ON w.samochody_id=s.id
 GROUP BY koszt DESC
 ```
 
-- zapytanie 
+- Wyswietl rok najnowszego i najstarszego samochoodu
 ```zapytanie
-  kod zapytania
+  (SELECT rocznik FROM samochody GROUP BY rocznik DESC LIMIT 1)
+UNION ALL
+(SELECT rocznik FROM samochody GROUP BY rocznik ASC LIMIT 1)
 ```
 
 - zapytanie 
