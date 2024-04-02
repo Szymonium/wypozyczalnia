@@ -40,10 +40,10 @@ Baza zawiera x widoków
    SELECT * FROM klienci WHERE YEAR(data_ur) > 1990;
 ```
 
-- Utworz widok klientow urodzonych przed 2000
+- Utworz widok dlugosci wypozyczen
 ```nazwa
-  CREATE VIEW klienci_urodzeni_przed_2000 AS
-    SELECT * FROM klienci WHERE YEAR(data_ur) < 2000;
+  CREATE VIEW dlugosc_wypozyczenia AS
+      SELECT id, DATEDIFF(data_zwrotu, data_wypozyczenia) AS 'ilosc_dni' FROM `wypozyczenia`
 ```
 
 - nazwa
