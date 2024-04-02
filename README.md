@@ -26,33 +26,33 @@ Aby strona internetowa działała należy umieścić ją w folderze o nazwie "wy
 
 ## Widoki
 
-Baza zawiera x widoków
+Baza zawiera 5 widoków
 
-- Utworz widok klientow z ich imionami
+- Utworz widok klientow (id, imie i nazwisko):
 ```nazwa
-  CREATE VIEW klienci_z_imionami AS
+  CREATE VIEW klienci AS
       SELECT id, imie, nazwisko FROM klienci
 ```
 
-- Utworz widok kilentow urodzonych po 1999
+- Utworz widok kilentow urodzonych po 1999:
 ```nazwa
   CREATE VIEW klienci_urodzeni_po_1999 AS
       SELECT * FROM klienci WHERE YEAR(data_ur) > 1999
 ```
 
-- Utworz widok dlugosci wypozyczen
+- Utworz widok dlugosci wypozyczen:
 ```nazwa
   CREATE VIEW dlugosc_wypozyczenia AS
       SELECT id, DATEDIFF(data_zwrotu, data_wypozyczenia) AS 'ilosc_dni' FROM `wypozyczenia`
 ```
 
-- Utworz widok pracownikow ktorzy sa mezczyznami
+- Utworz widok pracownikow ktorzy sa mezczyznami:
 ```nazwa
   CREATE VIEW pracownicy_mezczyzni AS
       SELECT imie, nazwisko FROM 'pracownicy' WHERE plec = 'M'
 ```
 
-- Utworz widok w ktorym polaczysz imie i nazwisko (odstep miedzy nimi) oraz male znaki zamienisz na duze 
+- Utworz widok w ktorym polaczysz imie i nazwisko (odstep miedzy nimi) oraz male znaki zamienisz na duze:
 ```nazwa
   CREATE VIEW klienci_duzymi_literami AS
  	    SELECT UPPER(CONCAT(imie, ' ',nazwisko)) AS duze FROM klienci 
@@ -61,17 +61,17 @@ Baza zawiera x widoków
 
 Lista możliwych do wykonania zapytań SELECT w bazie:
 
-- Wybierz najstarszego pracownika:
+- Wyswietl najstarszego pracownika:
 ```zapytanie
   SELECT imie, nazwisko, data_ur FROM `klienci` ORDER BY data_ur ASC LIMIT 1
 ```
 
-- Wybierz imie, nazwisko i oblicz wiek klientow: 
+- Wyswietl imie, nazwisko i oblicz wiek klientow: 
 ```zapytanie
   SELECT imie, nazwisko, YEAR(NOW()) - YEAR(data_ur) AS 'wiek' FROM `klienci`
 ```
 
-- Wybierz sredni wiek pracownikow: 
+- Wyswietl sredni wiek pracownikow: 
 ```zapytanie
   SELECT ROUND(AVG( YEAR(NOW()) - YEAR(data_ur))) AS 'sredni_wiek' FROM `pracownicy`
 ```
@@ -88,7 +88,7 @@ INNER JOIN klienci AS k ON k.id = w.klienci_id
 GROUP BY klienci_id
 ```
 
-- Wyswietl imie i nazwisko pracownikow jako pracownik, imie i nazwisko klientow jako klient i id wypozyczenia.Wyswietl wynik niemalejaco po id wypozyczenia:
+- Wyswietl imie i nazwisko pracownikow jako pracownik, imie i nazwisko klientow jako klient i id wypozyczenia. Wyswietl wynik niemalejaco po id wypozyczenia:
 ```zapytanie
   SELECT CONCAT(p.imie," ", p.nazwisko) AS pracownik , CONCAT(k.imie," ", k.nazwisko) AS klient, w.id FROM `wypozyczenia` AS w
 INNER JOIN pracownicy AS p ON p.id = w.pracownicy_id
@@ -96,7 +96,7 @@ INNER JOIN klienci AS k ON k.id = w.klienci_id
 ORDER BY id
 ```
 
-- Wyswietl imie, nazwisko klienta , marke, model samochodu i id wypozyczenia. Wyswietl wynik nierosnaco po id wypozyczenia:
+- Wyswietl imie, nazwisko klienta, marke, model samochodu i id wypozyczenia. Wyswietl wynik nierosnaco po id wypozyczenia:
 ```zapytanie
   SELECT CONCAT(k.imie," ", k.nazwisko) AS klient, marka, model, w.id FROM `wypozyczenia` AS w
 INNER JOIN klienci AS k ON k.id = w.klienci_id
@@ -104,21 +104,21 @@ INNER JOIN samochody AS s ON s.id = w.samochody_id
 ORDER BY id DESC
 ```
 
-- Wyswietl koszt kazdego wypozyczenia nie malejaco
+- Wyswietl koszt kazdego wypozyczenia nie malejaco:
 ```zapytanie
   SELECT w.id, (DATEDIFF(data_zwrotu, data_wypozyczenia) * cena_za_dzien) AS koszt FROM `wypozyczenia` AS w
 INNER JOIN samochody AS s ON w.samochody_id=s.id
 GROUP BY koszt DESC
 ```
 
-- Wyswietl rok najnowszego i najstarszego samochoodu
+- Wyswietl rok najnowszego i najstarszego samochoodu:
 ```zapytanie
   (SELECT rocznik FROM samochody GROUP BY rocznik DESC LIMIT 1)
 UNION ALL
 (SELECT rocznik FROM samochody GROUP BY rocznik ASC LIMIT 1)
 ```
 
-- Wyswietl ilosc znakow w mailach pracownikow
+- Wyswietl ilosc znakow w mailach pracownikow:
 ```zapytanie
   SELECT mail, CHAR_LENGTH(mail) AS znaki FROM pracownicy
 ```
