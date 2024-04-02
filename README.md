@@ -28,6 +28,23 @@ Aby strona internetowa działała należy umieścić ją w folderze o nazwie "wy
 
 Baza zawiera x widoków
 
+- Utworz widok klientow z ich imionami
+```nazwa
+  CREATE VIEW klienci_z_imionami AS
+   SELECT id, imie, nazwisko FROM klienci;
+```
+
+- Utworz widok kilentow urodzonych po 1990
+```nazwa
+  CREATE VIEW klienci_urodzeni_po_1990 AS
+   SELECT * FROM klienci WHERE YEAR(data_ur) > 1990;
+```
+
+- 
+```nazwa
+  kod zapytania w widoku
+```
+
 - nazwa
 ```nazwa
   kod zapytania w widoku
@@ -101,29 +118,4 @@ UNION ALL
 - Wyswietl ilosc znakow w mailach pracownikow
 ```zapytanie
   SELECT mail, CHAR_LENGTH(mail) AS znaki FROM pracownicy
-```
-
-- zapytanie 
-```zapytanie
-  kod zapytania
-```
-
-- zapytanie 
-```zapytanie
-  kod zapytania
-```
-
-- zapytanie 
-```zapytanie
-  kod zapytania
-```
-
-- zapytanie 
-```zapytanie
-  kod zapytania
-```
-
-- zapytanie 
-```zapytanie
-  kod zapytania
 ```
