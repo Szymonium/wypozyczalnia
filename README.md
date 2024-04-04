@@ -28,31 +28,31 @@ Aby strona internetowa działała należy umieścić ją w folderze o nazwie "wy
 
 Baza zawiera 5 widoków
 
-- Utworz widok klientow (id, imie i nazwisko):
+- Utwórz widok klientów (id, imie i nazwisko):
 ```nazwa
   CREATE VIEW klienci AS
       SELECT id, imie, nazwisko FROM klienci
 ```
 
-- Utworz widok kilentow urodzonych po 1999:
+- Utwórz widok kilentów urodzonych po 1999 r.:
 ```nazwa
   CREATE VIEW klienci_urodzeni_po_1999 AS
       SELECT * FROM klienci WHERE YEAR(data_ur) > 1999
 ```
 
-- Utworz widok dlugosci wypozyczen:
+- Utwórz widok długości wypozyczen:
 ```nazwa
   CREATE VIEW dlugosc_wypozyczenia AS
       SELECT id, DATEDIFF(data_zwrotu, data_wypozyczenia) AS 'ilosc_dni' FROM `wypozyczenia`
 ```
 
-- Utworz widok pracownikow ktorzy sa mezczyznami:
+- Utwórz widok pracownikow ktorzy sa mezczyznami:
 ```nazwa
   CREATE VIEW pracownicy_mezczyzni AS
       SELECT imie, nazwisko FROM 'pracownicy' WHERE plec = 'M'
 ```
 
-- Utworz widok w ktorym polaczysz imie i nazwisko (odstep miedzy nimi) oraz male znaki zamienisz na duze:
+- Utwórz widok w ktorym polaczysz imie i nazwisko (odstep miedzy nimi) oraz male znaki zamienisz na duze:
 ```nazwa
   CREATE VIEW klienci_duzymi_literami AS
  	    SELECT UPPER(CONCAT(imie, ' ',nazwisko)) AS duze FROM klienci 
