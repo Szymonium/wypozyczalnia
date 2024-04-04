@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 15, 2024 at 09:28 AM
--- Wersja serwera: 10.4.32-MariaDB
--- Wersja PHP: 8.2.12
+-- Generation Time: Apr 04, 2024 at 10:11 AM
+-- Server version: 10.4.32-MariaDB
+-- PHP Version: 8.2.12
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -26,7 +26,18 @@ USE `rentakar`;
 -- --------------------------------------------------------
 
 --
--- Struktura tabeli dla tabeli `klienci`
+-- Stand-in structure for view `dlugosc_wypozyczenia`
+-- (See below for the actual view)
+--
+CREATE TABLE `dlugosc_wypozyczenia` (
+`id` int(10) unsigned
+,`ilosc_dni` int(7)
+);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `klienci`
 --
 
 CREATE TABLE `klienci` (
@@ -73,7 +84,33 @@ INSERT INTO `klienci` (`id`, `imie`, `nazwisko`, `pesel`, `nr_telefonu`, `data_u
 -- --------------------------------------------------------
 
 --
--- Struktura tabeli dla tabeli `pracownicy`
+-- Stand-in structure for view `klienci_duzymi_literami`
+-- (See below for the actual view)
+--
+CREATE TABLE `klienci_duzymi_literami` (
+`duze` varchar(51)
+);
+
+-- --------------------------------------------------------
+
+--
+-- Stand-in structure for view `klienci_urodzeni_po_1999`
+-- (See below for the actual view)
+--
+CREATE TABLE `klienci_urodzeni_po_1999` (
+`id` int(10) unsigned
+,`imie` varchar(20)
+,`nazwisko` varchar(30)
+,`pesel` varchar(11)
+,`nr_telefonu` varchar(9)
+,`data_ur` date
+,`nr_tel` varchar(9)
+);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `pracownicy`
 --
 
 CREATE TABLE `pracownicy` (
@@ -120,7 +157,18 @@ INSERT INTO `pracownicy` (`id`, `imie`, `nazwisko`, `pesel`, `plec`, `data_ur`, 
 -- --------------------------------------------------------
 
 --
--- Struktura tabeli dla tabeli `samochody`
+-- Stand-in structure for view `pracownicy_mezczyzni`
+-- (See below for the actual view)
+--
+CREATE TABLE `pracownicy_mezczyzni` (
+`imie` varchar(20)
+,`nazwisko` varchar(30)
+);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `samochody`
 --
 
 CREATE TABLE `samochody` (
@@ -166,7 +214,19 @@ INSERT INTO `samochody` (`id`, `nr_rejestracyjny`, `marka`, `model`, `rocznik`, 
 -- --------------------------------------------------------
 
 --
--- Struktura tabeli dla tabeli `wypozyczenia`
+-- Stand-in structure for view `wszyscy_klienci`
+-- (See below for the actual view)
+--
+CREATE TABLE `wszyscy_klienci` (
+`id` int(10) unsigned
+,`imie` varchar(20)
+,`nazwisko` varchar(30)
+);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `wypozyczenia`
 --
 
 CREATE TABLE `wypozyczenia` (
@@ -225,30 +285,75 @@ INSERT INTO `wypozyczenia` (`id`, `pracownicy_id`, `klienci_id`, `samochody_id`,
 (40, 16, 6, 19, '2023-08-15', '2023-10-15'),
 (41, 4, 4, 20, '2023-06-13', '2023-06-20');
 
+-- --------------------------------------------------------
+
 --
--- Indeksy dla zrzutów tabel
+-- Structure for view `dlugosc_wypozyczenia`
+--
+DROP TABLE IF EXISTS `dlugosc_wypozyczenia`;
+
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `dlugosc_wypozyczenia`  AS SELECT `wypozyczenia`.`id` AS `id`, to_days(`wypozyczenia`.`data_zwrotu`) - to_days(`wypozyczenia`.`data_wypozyczenia`) AS `ilosc_dni` FROM `wypozyczenia` ;
+
+-- --------------------------------------------------------
+
+--
+-- Structure for view `klienci_duzymi_literami`
+--
+DROP TABLE IF EXISTS `klienci_duzymi_literami`;
+
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `klienci_duzymi_literami`  AS SELECT ucase(concat(`klienci`.`imie`,' ',`klienci`.`nazwisko`)) AS `duze` FROM `klienci` ;
+
+-- --------------------------------------------------------
+
+--
+-- Structure for view `klienci_urodzeni_po_1999`
+--
+DROP TABLE IF EXISTS `klienci_urodzeni_po_1999`;
+
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `klienci_urodzeni_po_1999`  AS SELECT `klienci`.`id` AS `id`, `klienci`.`imie` AS `imie`, `klienci`.`nazwisko` AS `nazwisko`, `klienci`.`pesel` AS `pesel`, `klienci`.`nr_telefonu` AS `nr_telefonu`, `klienci`.`data_ur` AS `data_ur`, `klienci`.`nr_tel` AS `nr_tel` FROM `klienci` WHERE year(`klienci`.`data_ur`) > 1999 ;
+
+-- --------------------------------------------------------
+
+--
+-- Structure for view `pracownicy_mezczyzni`
+--
+DROP TABLE IF EXISTS `pracownicy_mezczyzni`;
+
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `pracownicy_mezczyzni`  AS SELECT `pracownicy`.`imie` AS `imie`, `pracownicy`.`nazwisko` AS `nazwisko` FROM `pracownicy` WHERE `pracownicy`.`plec` = 'M' ;
+
+-- --------------------------------------------------------
+
+--
+-- Structure for view `wszyscy_klienci`
+--
+DROP TABLE IF EXISTS `wszyscy_klienci`;
+
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `wszyscy_klienci`  AS SELECT `klienci`.`id` AS `id`, `klienci`.`imie` AS `imie`, `klienci`.`nazwisko` AS `nazwisko` FROM `klienci` ;
+
+--
+-- Indexes for dumped tables
 --
 
 --
--- Indeksy dla tabeli `klienci`
+-- Indexes for table `klienci`
 --
 ALTER TABLE `klienci`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indeksy dla tabeli `pracownicy`
+-- Indexes for table `pracownicy`
 --
 ALTER TABLE `pracownicy`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indeksy dla tabeli `samochody`
+-- Indexes for table `samochody`
 --
 ALTER TABLE `samochody`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indeksy dla tabeli `wypozyczenia`
+-- Indexes for table `wypozyczenia`
 --
 ALTER TABLE `wypozyczenia`
   ADD PRIMARY KEY (`id`),
