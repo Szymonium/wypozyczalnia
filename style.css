@@ -38,9 +38,8 @@ body {
 
 .all {
   width: 85%;
-  height: 1500px;
   padding: 0;
-  top: 110%;
+  height: 600px;
 }
 
 .log-out:link, .log-out:visited {
@@ -126,4 +125,35 @@ h1 {
   color: #fff;
   line-height: 42px;
   text-align: center;
+}
+
+.second {
+  padding-top: 50px;
+  height: 700px;
+  overflow: auto;
+  top: 150%;
+}
+
+th {
+  background-color: #212121;
+  height: 60px;
+  color: #fff;
+}
+
+td {
+  height: 30px;
+  padding-left: 10px;
+}
+
+.td-1 {
+  background-color: #fff;
+}
+
+.td-0 {
+  background-color: #0b3c3d;
+  color: #fff;
+}
+
+#go-back {
+  margin: 0;
 }
