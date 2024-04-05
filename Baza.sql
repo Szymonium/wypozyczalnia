@@ -1,53 +1,19 @@
--- phpMyAdmin SQL Dump
--- version 5.2.1
--- https://www.phpmyadmin.net/
---
--- Host: 127.0.0.1
--- Generation Time: Apr 05, 2024 at 07:44 PM
--- Server version: 10.4.32-MariaDB
--- PHP Version: 8.2.12
-
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
 SET time_zone = "+00:00";
-
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
 /*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
 /*!40101 SET NAMES utf8mb4 */;
 
---
--- Database: `rentakar`
---
 DROP DATABASE IF EXISTS `rentakar`;
 CREATE DATABASE IF NOT EXISTS `rentakar` DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci;
 USE `rentakar`;
-
-DELIMITER $$
---
--- Functions
---
-CREATE DEFINER=`root`@`localhost` FUNCTION `oblicz_wiek` (`data_ur` DATE) RETURNS INT(3)  RETURN YEAR(NOW()) - YEAR(data_ur)$$
-
-DELIMITER ;
-
--- --------------------------------------------------------
-
---
--- Stand-in structure for view `dlugosc_wypozyczenia`
--- (See below for the actual view)
---
 CREATE TABLE `dlugosc_wypozyczenia` (
 `id` int(10) unsigned
 ,`ilosc_dni` int(7)
 );
-
--- --------------------------------------------------------
-
---
--- Table structure for table `klienci`
---
 
 CREATE TABLE `klienci` (
   `id` int(10) UNSIGNED NOT NULL,
@@ -55,72 +21,39 @@ CREATE TABLE `klienci` (
   `nazwisko` varchar(30) DEFAULT NULL,
   `pesel` varchar(11) DEFAULT NULL,
   `nr_telefonu` varchar(9) DEFAULT NULL,
-  `data_ur` date DEFAULT NULL,
-  `nr_tel` varchar(9) NOT NULL
+  `data_ur` date DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
---
--- Dumping data for table `klienci`
---
-
-INSERT INTO `klienci` (`id`, `imie`, `nazwisko`, `pesel`, `nr_telefonu`, `data_ur`, `nr_tel`) VALUES
-(1, 'Aldona', 'Bajerska', '95061446144', '785126485', '1995-06-14', '699832264'),
-(2, 'Tymoteusz', 'Ciesielski', '99081690338', '789612468', '1999-08-16', '622591736'),
-(3, 'Kornel', 'Zywiec', '85121806256', '843216978', '1985-12-18', '553293585'),
-(4, 'Teodor', 'Sokolnicki', '83102893956', '248659326', '1983-10-28', '600202449'),
-(5, 'Alan', 'Niksa', '01210107152', '175496238', '2001-01-01', '697924480'),
-(6, 'Hieronim', 'Krokosz', '03271246333', '784126953', '2003-07-12', '778130408'),
-(7, 'Zofia', 'Knapek', '92042530742', '789654123', '1992-04-25', '539015453'),
-(8, 'Marcel', 'Bala', '96093040353', '123456789', '1996-09-30', '554525180'),
-(9, 'Paulina', 'Predka', '99091961882', '987654321', '1999-09-19', '751008279'),
-(10, 'Waclaw', 'Nogiec', '79042636579', '147258369', '1979-04-26', '621074942'),
-(11, 'Marlena', 'Miara', '97030797341', '369258147', '1997-03-07', '507426432'),
-(12, 'Edward', 'Gontarek', '02220247715', '321654987', '2002-02-02', '684696397'),
-(13, 'Kamila', 'Jaroszewska', '85051912740', '753951486', '1985-05-19', '891753344'),
-(14, 'Marzena', 'Stasiewicz', '94081473541', '963258456', '1994-08-14', '840760480'),
-(15, 'Magda', 'Maj', '03230385420', '555777482', '2003-03-03', '783185591'),
-(16, 'Karol', 'Strojek', '93011389013', '654564454', '1993-01-13', '806967604'),
-(17, 'Jaroslaw', 'Drapal', '82062202259', '784256115', '1982-06-22', '861557488'),
-(18, 'Alojzy', 'Kesik', '80101019617', '986512444', '1980-10-10', '867807539'),
-(19, 'Bogumil', 'Antonik', '70071461273', '784256333', '1970-07-14', '529991563'),
-(20, 'Gracjan', 'Mackiewicz', '99111929753', '456812596', '1999-11-19', '894460344'),
-(21, 'Daria', 'Jelonek', '82101273266', '787989585', '1982-10-12', '785076021'),
-(22, 'Tobiasz', 'Uss', '87051949474', '126786456', '1987-05-19', '870343428'),
-(23, 'Seweryn', 'Golas', '04240446653', '323232111', '2004-04-04', '634494353'),
-(24, 'Henryk', 'Rodzynek', '05250550914', '845845787', '2005-05-05', '658795918'),
-(25, 'Wincenty', 'Piwko', '96060613618', '956659231', '1996-06-06', '797806169');
-
--- --------------------------------------------------------
-
---
--- Stand-in structure for view `klienci_duzymi_literami`
--- (See below for the actual view)
---
+TRUNCATE TABLE `klienci`;
+INSERT INTO `klienci` (`id`, `imie`, `nazwisko`, `pesel`, `nr_telefonu`, `data_ur`) VALUES
+(1, 'Aldona', 'Bajerska', '95061446144', '785126485', '1995-06-14'),
+(2, 'Tymoteusz', 'Ciesielski', '99081690338', '789612468', '1999-08-16'),
+(3, 'Kornel', 'Zywiec', '85121806256', '843216978', '1985-12-18'),
+(4, 'Teodor', 'Sokolnicki', '83102893956', '248659326', '1983-10-28'),
+(5, 'Alan', 'Niksa', '01210107152', '175496238', '2001-01-01'),
+(6, 'Hieronim', 'Krokosz', '03271246333', '784126953', '2003-07-12'),
+(7, 'Zofia', 'Knapek', '92042530742', '789654123', '1992-04-25'),
+(8, 'Marcel', 'Bala', '96093040353', '123456789', '1996-09-30'),
+(9, 'Paulina', 'Predka', '99091961882', '987654321', '1999-09-19'),
+(10, 'Waclaw', 'Nogiec', '79042636579', '147258369', '1979-04-26'),
+(11, 'Marlena', 'Miara', '97030797341', '369258147', '1997-03-07'),
+(12, 'Edward', 'Gontarek', '02220247715', '321654987', '2002-02-02'),
+(13, 'Kamila', 'Jaroszewska', '85051912740', '753951486', '1985-05-19'),
+(14, 'Marzena', 'Stasiewicz', '94081473541', '963258456', '1994-08-14'),
+(15, 'Magda', 'Maj', '03230385420', '555777482', '2003-03-03'),
+(16, 'Karol', 'Strojek', '93011389013', '654564454', '1993-01-13'),
+(17, 'Jaroslaw', 'Drapal', '82062202259', '784256115', '1982-06-22'),
+(18, 'Alojzy', 'Kesik', '80101019617', '986512444', '1980-10-10'),
+(19, 'Bogumil', 'Antonik', '70071461273', '784256333', '1970-07-14'),
+(20, 'Gracjan', 'Mackiewicz', '99111929753', '456812596', '1999-11-19'),
+(21, 'Daria', 'Jelonek', '82101273266', '787989585', '1982-10-12'),
+(22, 'Tobiasz', 'Uss', '87051949474', '126786456', '1987-05-19'),
+(23, 'Seweryn', 'Golas', '04240446653', '323232111', '2004-04-04'),
+(24, 'Henryk', 'Rodzynek', '05250550914', '845845787', '2005-05-05'),
+(25, 'Wincenty', 'Piwko', '96060613618', '956659231', '1996-06-06');
 CREATE TABLE `klienci_duzymi_literami` (
 `duze` varchar(51)
 );
-
--- --------------------------------------------------------
-
---
--- Stand-in structure for view `klienci_urodzeni_po_1999`
--- (See below for the actual view)
---
-CREATE TABLE `klienci_urodzeni_po_1999` (
-`id` int(10) unsigned
-,`imie` varchar(20)
-,`nazwisko` varchar(30)
-,`pesel` varchar(11)
-,`nr_telefonu` varchar(9)
-,`data_ur` date
-,`nr_tel` varchar(9)
-);
-
--- --------------------------------------------------------
-
---
--- Table structure for table `pracownicy`
---
 
 CREATE TABLE `pracownicy` (
   `id` int(10) UNSIGNED NOT NULL,
@@ -132,10 +65,7 @@ CREATE TABLE `pracownicy` (
   `mail` varchar(50) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
---
--- Dumping data for table `pracownicy`
---
-
+TRUNCATE TABLE `pracownicy`;
 INSERT INTO `pracownicy` (`id`, `imie`, `nazwisko`, `pesel`, `plec`, `data_ur`, `mail`) VALUES
 (1, 'Bartosz', 'Czosynka', '80061862515', 'M', '1980-06-18', 'bartoszczosynka@yahoo.com'),
 (2, 'Antonina', 'Kotyrba', '90100496662', 'K', '1990-10-04', 'antoninakotyrba@interia.eu'),
@@ -162,23 +92,10 @@ INSERT INTO `pracownicy` (`id`, `imie`, `nazwisko`, `pesel`, `plec`, `data_ur`, 
 (23, 'Igor', 'Goryl', '93111537535', 'M', '1993-11-15', 'igorgoryl@yahoo.com'),
 (24, 'Wieslawa', 'Brudna', '01311281722', 'K', '2001-01-12', 'wieslawabrudna@gmail.com'),
 (25, 'Zygmunt', 'Firek', '01052275112', 'M', '2001-05-22', 'zygmuntfirek@outlook.com');
-
--- --------------------------------------------------------
-
---
--- Stand-in structure for view `pracownicy_mezczyzni`
--- (See below for the actual view)
---
 CREATE TABLE `pracownicy_mezczyzni` (
 `imie` varchar(20)
 ,`nazwisko` varchar(30)
 );
-
--- --------------------------------------------------------
-
---
--- Table structure for table `samochody`
---
 
 CREATE TABLE `samochody` (
   `id` int(10) UNSIGNED NOT NULL,
@@ -189,10 +106,7 @@ CREATE TABLE `samochody` (
   `cena_za_dzien` float DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
---
--- Dumping data for table `samochody`
---
-
+TRUNCATE TABLE `samochody`;
 INSERT INTO `samochody` (`id`, `nr_rejestracyjny`, `marka`, `model`, `rocznik`, `cena_za_dzien`) VALUES
 (1, 'NO1314K', 'Ford', 'Mondeo', '2010', 300),
 (2, 'NO1076V', 'Toyota', 'Yaris', '2019', 297),
@@ -219,24 +133,11 @@ INSERT INTO `samochody` (`id`, `nr_rejestracyjny`, `marka`, `model`, `rocznik`, 
 (23, 'NO970P3', 'Kia', 'Ceed', '2017', 367),
 (24, 'NO57VE3', 'Volkswagen', 'Arteon', '2016', 407),
 (25, 'NO784FT', 'Ford', 'Transit', '2007', 305);
-
--- --------------------------------------------------------
-
---
--- Stand-in structure for view `wszyscy_klienci`
--- (See below for the actual view)
---
 CREATE TABLE `wszyscy_klienci` (
 `id` int(10) unsigned
 ,`imie` varchar(20)
 ,`nazwisko` varchar(30)
 );
-
--- --------------------------------------------------------
-
---
--- Table structure for table `wypozyczenia`
---
 
 CREATE TABLE `wypozyczenia` (
   `id` int(10) UNSIGNED NOT NULL,
@@ -247,10 +148,7 @@ CREATE TABLE `wypozyczenia` (
   `data_zwrotu` date DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
---
--- Dumping data for table `wypozyczenia`
---
-
+TRUNCATE TABLE `wypozyczenia`;
 INSERT INTO `wypozyczenia` (`id`, `pracownicy_id`, `klienci_id`, `samochody_id`, `data_wypozyczenia`, `data_zwrotu`) VALUES
 (1, 5, 1, 3, '2023-09-12', '2023-09-20'),
 (2, 15, 25, 6, '2023-01-01', '2023-02-01'),
@@ -293,118 +191,49 @@ INSERT INTO `wypozyczenia` (`id`, `pracownicy_id`, `klienci_id`, `samochody_id`,
 (39, 13, 2, 14, '2023-02-18', '2023-03-16'),
 (40, 16, 6, 19, '2023-08-15', '2023-10-15'),
 (41, 4, 4, 20, '2023-06-13', '2023-06-20');
-
--- --------------------------------------------------------
-
---
--- Structure for view `dlugosc_wypozyczenia`
---
 DROP TABLE IF EXISTS `dlugosc_wypozyczenia`;
 
 CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `dlugosc_wypozyczenia`  AS SELECT `wypozyczenia`.`id` AS `id`, to_days(`wypozyczenia`.`data_zwrotu`) - to_days(`wypozyczenia`.`data_wypozyczenia`) AS `ilosc_dni` FROM `wypozyczenia` ;
-
--- --------------------------------------------------------
-
---
--- Structure for view `klienci_duzymi_literami`
---
 DROP TABLE IF EXISTS `klienci_duzymi_literami`;
 
 CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `klienci_duzymi_literami`  AS SELECT ucase(concat(`klienci`.`imie`,' ',`klienci`.`nazwisko`)) AS `duze` FROM `klienci` ;
-
--- --------------------------------------------------------
-
---
--- Structure for view `klienci_urodzeni_po_1999`
---
-DROP TABLE IF EXISTS `klienci_urodzeni_po_1999`;
-
-CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `klienci_urodzeni_po_1999`  AS SELECT `klienci`.`id` AS `id`, `klienci`.`imie` AS `imie`, `klienci`.`nazwisko` AS `nazwisko`, `klienci`.`pesel` AS `pesel`, `klienci`.`nr_telefonu` AS `nr_telefonu`, `klienci`.`data_ur` AS `data_ur`, `klienci`.`nr_tel` AS `nr_tel` FROM `klienci` WHERE year(`klienci`.`data_ur`) > 1999 ;
-
--- --------------------------------------------------------
-
---
--- Structure for view `pracownicy_mezczyzni`
---
 DROP TABLE IF EXISTS `pracownicy_mezczyzni`;
 
 CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `pracownicy_mezczyzni`  AS SELECT `pracownicy`.`imie` AS `imie`, `pracownicy`.`nazwisko` AS `nazwisko` FROM `pracownicy` WHERE `pracownicy`.`plec` = 'M' ;
-
--- --------------------------------------------------------
-
---
--- Structure for view `wszyscy_klienci`
---
 DROP TABLE IF EXISTS `wszyscy_klienci`;
 
 CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `wszyscy_klienci`  AS SELECT `klienci`.`id` AS `id`, `klienci`.`imie` AS `imie`, `klienci`.`nazwisko` AS `nazwisko` FROM `klienci` ;
 
---
--- Indexes for dumped tables
---
 
---
--- Indexes for table `klienci`
---
 ALTER TABLE `klienci`
   ADD PRIMARY KEY (`id`);
 
---
--- Indexes for table `pracownicy`
---
 ALTER TABLE `pracownicy`
   ADD PRIMARY KEY (`id`);
 
---
--- Indexes for table `samochody`
---
 ALTER TABLE `samochody`
   ADD PRIMARY KEY (`id`);
 
---
--- Indexes for table `wypozyczenia`
---
 ALTER TABLE `wypozyczenia`
   ADD PRIMARY KEY (`id`),
   ADD KEY `wypozyczenia_FKIndex1` (`pracownicy_id`),
   ADD KEY `wypozyczenia_FKIndex2` (`klienci_id`),
   ADD KEY `wypozyczenia_FKIndex3` (`samochody_id`);
 
---
--- AUTO_INCREMENT for dumped tables
---
 
---
--- AUTO_INCREMENT for table `klienci`
---
 ALTER TABLE `klienci`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=46;
 
---
--- AUTO_INCREMENT for table `pracownicy`
---
 ALTER TABLE `pracownicy`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=30;
 
---
--- AUTO_INCREMENT for table `samochody`
---
 ALTER TABLE `samochody`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=54;
 
---
--- AUTO_INCREMENT for table `wypozyczenia`
---
 ALTER TABLE `wypozyczenia`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=124;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=127;
 
---
--- Constraints for dumped tables
---
 
---
--- Constraints for table `wypozyczenia`
---
 ALTER TABLE `wypozyczenia`
   ADD CONSTRAINT `wypozyczenia_ibfk_1` FOREIGN KEY (`pracownicy_id`) REFERENCES `pracownicy` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   ADD CONSTRAINT `wypozyczenia_ibfk_2` FOREIGN KEY (`klienci_id`) REFERENCES `klienci` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,

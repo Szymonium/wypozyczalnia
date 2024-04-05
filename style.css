@@ -39,7 +39,8 @@ body {
 .all {
   width: 85%;
   padding: 0;
-  height: 600px;
+  height: 800px;
+  top: 60%;
 }
 
 .log-out:link, .log-out:visited {
@@ -101,7 +102,7 @@ form label {
     font-weight: 300;
 }
 
-.panel input {
+.panel .akcja {
   margin-left: 10%;
 }
 
@@ -131,7 +132,7 @@ h1 {
   padding-top: 50px;
   height: 700px;
   overflow: auto;
-  top: 150%;
+  top: 170%;
 }
 
 th {
@@ -155,5 +156,32 @@ td {
 }
 
 #go-back {
-  margin: 0;
+  margin: 0 0 40px 0;
+}
+
+select, option, .text-input  {
+  color: #000;
+  text-align: center;
+}
+
+.tabele {
+  margin-left: 40%;
+  width: 20%;
+}
+
+.kolumny, #wartosc {
+  margin: 0 1%;
+}
+
+.wartosc {
+  margin-right: 1%;
+}
+
+#tabele {
+  width: 20%;
+  margin: 10px 0 40px 40%;
+}
+
+#sendigma {
+  display: none;
 }
