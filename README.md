@@ -129,14 +129,9 @@ UNION ALL
   SELECT mail, CHAR_LENGTH(mail) AS znaki FROM pracownicy
 ```
 
-## Funkcje
+## Funkcja
 
-- Oblicza wiek kilentów
+- Oblicza wiek osoby na podstawie podanej daty urodzenia
 ```zapytanie
-  CREATE FUNCTION `wiek`; CREATE DEFINER=`root`@`localhost` FUNCTION `wiek`(`wiek` INT) RETURNS INT(11) NOT DETERMINISTIC CONTAINS SQL SQL SECURITY DEFINER BEGIN DECLARE wiek INT; SET wiek = YEAR(CURDATE()) - YEAR(data_ur); RETURN wiek; END
-```
-
-- Oblicza cene wypożyczenia samochodu
-```zapytanie
-  CREATE FUNCTION `cena_wypozyzcenia`(`cena` DECIMAL(10,2)) RETURNS DECIMAL(10,2) NOT DETERMINISTIC CONTAINS SQL SQL SECURITY DEFINER BEGIN DECLARE cena_za_dobe DECIMAL(10,2); DECLARE cena_calkowita DECIMAL(10,2); SELECT cena_za_dobe INTO cena_za_dobe FROM samochody WHERE id = id_samochodu; SET cena_calkowita = cena_za_dobe * ilosc_dni; RETURN cena_calkowita; END
+  CREATE FUNCTION `oblicz_wiek`(`data_ur` DATE) RETURNS INT(11) NOT DETERMINISTIC CONTAINS SQL SQL SECURITY DEFINER RETURN YEAR(NOW()) - YEAR(data_ur)
 ```
