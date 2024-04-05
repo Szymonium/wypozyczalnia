@@ -21,7 +21,7 @@ Aby strona internetowa działała poprawnie należy umieścić ją w folderze o 
 
 ## Struktura bazy
 
-![App Screenshot](https://i.ibb.co/4M85g3C/struktura.png)
+![App Screenshot](https://i.ibb.co/82rMvWh/68747470733a2f2f692e6962622e636f2f344d38356733432f737472756b747572612e706e67.png)
 
 
 ## Widoki
