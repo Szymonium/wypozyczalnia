@@ -16,12 +16,12 @@ Aby strona internetowa działała poprawnie należy umieścić ją w folderze o 
 ![App Screenshot](https://i.ibb.co/QXr9NGX/Screenshot-2024-03-06-182431.png)
 
 - wypożyczenia
-![App Screenshot](https://i.ibb.co/kxdtRvG/Screenshot-2024-03-06-182436.png)
+![App Screenshot](https://i.ibb.co/hmvNzGg/shared-image.jpg)
 
 
 ## Struktura bazy
 
-![App Screenshot](https://i.ibb.co/4M85g3C/struktura.png)
+![App Screenshot](https://i.ibb.co/82rMvWh/68747470733a2f2f692e6962622e636f2f344d38356733432f737472756b747572612e706e67.png)
 
 
 ## Widoki
@@ -40,10 +40,16 @@ Baza zawiera 5 widoków
       SELECT * FROM klienci WHERE YEAR(data_ur) > 1999
 ```
 
-- Utwórz widok długości wypozyczeń:
+- Utwórz widok wypozyczeń z danymi klientów (id, data_wypożyczenia, data_zwrotu, imie, nazwisko) :
 ```nazwa
-  CREATE VIEW dlugosc_wypozyczenia AS
-      SELECT id, DATEDIFF(data_zwrotu, data_wypozyczenia) AS 'ilosc_dni' FROM `wypozyczenia`
+  CREATE VIEW wypozyczenia_z_danymi_klientow AS
+SELECT w.id,
+       w.data_wypozyczenia,
+       w.data_zwrotu,
+       k.imie,
+       k.nazwisko
+FROM wypozyczenia AS w
+INNER JOIN klienci AS k ON w.klienci_id = k.id;
 ```
 
 - Utwórz widok pracowników, którzy są mężczyznami:
@@ -121,4 +127,11 @@ UNION ALL
 - Wyświetl ilość znaków w mailach pracowników:
 ```zapytanie
   SELECT mail, CHAR_LENGTH(mail) AS znaki FROM pracownicy
+```
+
+## Funkcja
+
+- Oblicza wiek osoby na podstawie podanej daty urodzenia
+```zapytanie
+  CREATE FUNCTION `oblicz_wiek`(`data_ur` DATE) RETURNS INT(3) NOT DETERMINISTIC CONTAINS SQL SQL SECURITY DEFINER RETURN YEAR(NOW()) - YEAR(data_ur)
 ```
