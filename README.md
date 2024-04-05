@@ -133,5 +133,5 @@ UNION ALL
 
 - Oblicza wiek osoby na podstawie podanej daty urodzenia
 ```zapytanie
-  CREATE FUNCTION `oblicz_wiek`(`data_ur` DATE) RETURNS INT(11) NOT DETERMINISTIC CONTAINS SQL SQL SECURITY DEFINER RETURN YEAR(NOW()) - YEAR(data_ur)
+  CREATE FUNCTION `oblicz_wiek`(`data_ur` DATE) RETURNS INT(3) NOT DETERMINISTIC CONTAINS SQL SQL SECURITY DEFINER RETURN YEAR(NOW()) - YEAR(data_ur)
 ```
