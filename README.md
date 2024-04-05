@@ -16,7 +16,7 @@ Aby strona internetowa działała poprawnie należy umieścić ją w folderze o 
 ![App Screenshot](https://i.ibb.co/QXr9NGX/Screenshot-2024-03-06-182431.png)
 
 - wypożyczenia
-![App Screenshot](https://i.ibb.co/kxdtRvG/Screenshot-2024-03-06-182436.png)
+![App Screenshot](https://i.ibb.co/hmvNzGg/shared-image.jpg)
 
 
 ## Struktura bazy
