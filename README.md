@@ -40,10 +40,16 @@ Baza zawiera 5 widoków
       SELECT * FROM klienci WHERE YEAR(data_ur) > 1999
 ```
 
-- Utwórz widok długości wypozyczeń:
+- Utwórz widok wypozyczeń z danymi klientów (id, data_wypożyczenia, data_zwrotu, imie, nazwisko) :
 ```nazwa
-  CREATE VIEW dlugosc_wypozyczenia AS
-      SELECT id, DATEDIFF(data_zwrotu, data_wypozyczenia) AS 'ilosc_dni' FROM `wypozyczenia`
+  CREATE VIEW wypozyczenia_z_danymi_klientow AS
+SELECT w.id,
+       w.data_wypozyczenia,
+       w.data_zwrotu,
+       k.imie,
+       k.nazwisko
+FROM wypozyczenia AS w
+INNER JOIN klienci AS k ON w.klienci_id = k.id;
 ```
 
 - Utwórz widok pracowników, którzy są mężczyznami:
