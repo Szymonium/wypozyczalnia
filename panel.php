@@ -16,7 +16,7 @@
     @$tabela = $_POST['tabela'];
     @$kolumna = $_POST['kolumna'];
     @$wartosc = $_POST['wartosc'];
-    @$wybor = $_POST["wybor-$akcja"];
+    @$wybor = $_POST['wybor'];
     $query;
 
     if ($tabela == "") {
@@ -81,9 +81,9 @@
               ";
               handleTabele($tabele);
               echo "
-              <input type='radio' id='all' name='wybor-select' value='all'>
+              <input type='radio' id='all' name='wybor' value='all'>
                <label for='all'>Wszystkie rekordy z tabeli</label><br>
-              <input type='radio' id='one-cond' name='wybor-select' value='one-cond'>
+              <input type='radio' id='one-cond' name='wybor' value='one-cond'>
                <label for='one-cond'>Wybierz jeżeli:</label>
               ";
               handleArrayInTabele($tabele[$tabela]);
@@ -152,9 +152,9 @@
               ";
               handleTabele($tabele);
               echo "
-              <input type='radio' id='all' name='wybor-select' value='all'>
+              <input type='radio' id='all' name='wybor' value='all'>
                <label for='all'>Wszystkie rekordy z tabeli</label><br>
-              <input type='radio' id='one-cond' name='wybor-select' value='one-cond'>
+              <input type='radio' id='one-cond' name='wybor' value='one-cond'>
                <label for='one-cond'>Usuń jeżeli:</label>
               ";
               handleArrayInTabele($tabele[$tabela]);
@@ -164,10 +164,12 @@
               <button type='submit' value='$akcja' name='akcja'>Wykonaj</button>
               ";
               if ($wybor == "all") {
-                $query = mysqli_query($conn, "TRUNCATE `$tabela`");
+                $query = mysqli_query($conn, "SELECT * FROM `$tabela`");
+                $delete = mysqli_query($conn, "TRUNCATE `$tabela`");
               }
               elseif ($wybor == "one-cond") {
-                $query = mysqli_query($conn, "DELETE FROM `$tabela` WHERE $kolumna = '$wartosc'");
+                $query = mysqli_query($conn, "SELECT * FROM `$tabela` WHERE $kolumna = '$wartosc'");
+                $delete = mysqli_query($conn, "DELETE FROM `$tabela` WHERE $kolumna = '$wartosc'");
               }
             break;
 
@@ -217,11 +219,23 @@
             break;
 
             case "delete":
+              echo "<tr><th colspan=" . count($tabele[$tabela]) .">Usunięte rekordy</th></tr>";
               echo "<tr>";
               for ($j = 0; $j < count($tabele[$tabela]); $j++) {
                 echo "<th>". $tabele[$tabela][$j] ."</th>";
               }
               echo "</tr>";
+              $i = 0;
+              if (@$query != NULL) {
+                while ($wynik = mysqli_fetch_array($query)) {
+                  echo "<tr>";
+                  for ($j = 0; $j < count($tabele[$tabela]); $j++) {
+                    echo "<td class='td-". $i%2 ."'>". $wynik[$j] ."</td>";
+                  }
+                  echo "</tr>";
+                  $i++;
+                }
+              }
             break;
 
             case "select":

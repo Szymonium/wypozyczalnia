@@ -235,9 +235,9 @@ ALTER TABLE `wypozyczenia`
 
 
 ALTER TABLE `wypozyczenia`
-  ADD CONSTRAINT `wypozyczenia_ibfk_1` FOREIGN KEY (`pracownicy_id`) REFERENCES `pracownicy` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  ADD CONSTRAINT `wypozyczenia_ibfk_2` FOREIGN KEY (`klienci_id`) REFERENCES `klienci` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  ADD CONSTRAINT `wypozyczenia_ibfk_3` FOREIGN KEY (`samochody_id`) REFERENCES `samochody` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+  ADD CONSTRAINT `wypozyczenia_ibfk_1` FOREIGN KEY (`pracownicy_id`) REFERENCES `pracownicy` (`id`) ON UPDATE CASCADE ON DELETE CASCADE,
+  ADD CONSTRAINT `wypozyczenia_ibfk_2` FOREIGN KEY (`klienci_id`) REFERENCES `klienci` (`id`) ON UPDATE CASCADE ON DELETE CASCADE,
+  ADD CONSTRAINT `wypozyczenia_ibfk_3` FOREIGN KEY (`samochody_id`) REFERENCES `samochody` (`id`) ON UPDATE CASCADE ON DELETE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
