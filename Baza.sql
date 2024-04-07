@@ -10,6 +10,11 @@ SET time_zone = "+00:00";
 DROP DATABASE IF EXISTS `rentakar`;
 CREATE DATABASE IF NOT EXISTS `rentakar` DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci;
 USE `rentakar`;
+
+DELIMITER $$
+CREATE DEFINER=`root`@`localhost` FUNCTION `oblicz_wiek` (`data_ur` DATE) RETURNS INT(3)  RETURN YEAR(NOW()) - YEAR(data_ur)$$
+
+DELIMITER ;
 CREATE TABLE `dlugosc_wypozyczenia` (
 `id` int(10) unsigned
 ,`ilosc_dni` int(7)
@@ -235,9 +240,9 @@ ALTER TABLE `wypozyczenia`
 
 
 ALTER TABLE `wypozyczenia`
-  ADD CONSTRAINT `wypozyczenia_ibfk_1` FOREIGN KEY (`pracownicy_id`) REFERENCES `pracownicy` (`id`) ON UPDATE CASCADE ON DELETE CASCADE,
-  ADD CONSTRAINT `wypozyczenia_ibfk_2` FOREIGN KEY (`klienci_id`) REFERENCES `klienci` (`id`) ON UPDATE CASCADE ON DELETE CASCADE,
-  ADD CONSTRAINT `wypozyczenia_ibfk_3` FOREIGN KEY (`samochody_id`) REFERENCES `samochody` (`id`) ON UPDATE CASCADE ON DELETE CASCADE;
+  ADD CONSTRAINT `wypozyczenia_ibfk_1` FOREIGN KEY (`pracownicy_id`) REFERENCES `pracownicy` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `wypozyczenia_ibfk_2` FOREIGN KEY (`klienci_id`) REFERENCES `klienci` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `wypozyczenia_ibfk_3` FOREIGN KEY (`samochody_id`) REFERENCES `samochody` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
